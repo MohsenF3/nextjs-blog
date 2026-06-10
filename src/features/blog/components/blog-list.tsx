@@ -1,9 +1,10 @@
 import { tryCatch } from "@/shared/lib/try-catch";
 import { getPosts } from "../api";
+import { BlogSearchParams } from "../schema";
 import BlogCard from "./blog-card";
 
-export default async function BlogList() {
-  const [data, error] = await tryCatch(getPosts());
+export default async function BlogList({ query }: { query: BlogSearchParams }) {
+  const [data, error] = await tryCatch(getPosts(query));
 
   if (error) {
     return (
