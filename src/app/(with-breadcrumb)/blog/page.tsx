@@ -21,7 +21,7 @@ export default async function BlogPage(props: { searchParams: SearchParams }) {
   const query = blogSearchParamsSchema.parse(searchParams);
 
   return (
-    <div className="container mx-auto py-10 px-3 md:px-0">
+    <div className="">
       <div className="grid grid-cols-4 gap-4">
         <div className="col-span-full md:col-span-1 space-y-8">
           <div className="hidden md:block">

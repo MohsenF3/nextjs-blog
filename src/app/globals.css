@@ -43,3 +43,9 @@
     cursor: pointer;
   }
 }
+
+@utility container {
+  @apply mx-auto;
+
+  @apply p-4 sm:px-8;
+}
