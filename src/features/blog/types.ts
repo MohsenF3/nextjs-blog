@@ -18,3 +18,11 @@ export type PostsResponse = {
   previous: string | null;
   results: Post[];
 };
+
+export type Category = {
+  id: number;
+  title: string;
+  blog_count: number;
+};
+
+export type CategoriesResponse = Category[];
