@@ -1,3 +1,6 @@
+import { routes } from "@/config";
+import { redirect } from "next/navigation";
+
 export default function Home() {
-  return <div className="">Home page</div>;
+  redirect(routes.blog.list);
 }
