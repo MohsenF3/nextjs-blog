@@ -17,6 +17,9 @@ export function useSearchFilter() {
       params.delete("search");
     }
 
+    // reset page on new search
+    params.delete("page");
+
     replace(`${pathname}?${params.toString()}`);
   }, 500);
 

@@ -16,6 +16,9 @@ export function useCategoryFilter() {
       params.delete("category");
     }
 
+    // reset page on new category
+    params.delete("page");
+
     replace(`${pathname}?${params.toString()}`);
   };
 
