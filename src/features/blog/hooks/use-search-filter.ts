@@ -1,27 +1,15 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParamsState } from "@/shared/hooks";
 import { useDebouncedCallback } from "use-debounce";
 
 export function useSearchFilter() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const { searchParams, setParam } = useSearchParamsState();
 
-  const setSearch = useDebouncedCallback((value: string) => {
-    const params = new URLSearchParams(searchParams);
-
-    if (value.trim()) {
-      params.set("search", value.trim());
-    } else {
-      params.delete("search");
-    }
-
-    // reset page on new search
-    params.delete("page");
-
-    replace(`${pathname}?${params.toString()}`);
-  }, 500);
+  const setSearch = useDebouncedCallback(
+    (value: string) => setParam("search", value.trim() || null),
+    300,
+  );
 
   return {
     activeSearch: searchParams.get("search") ?? "",

@@ -1,29 +1,12 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParamsState } from "@/shared/hooks";
 
 export function useCategoryFilter() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const { replace } = useRouter();
-
-  const setCategory = (id: string | null) => {
-    const params = new URLSearchParams(searchParams);
-
-    if (id) {
-      params.set("category", id);
-    } else {
-      params.delete("category");
-    }
-
-    // reset page on new category
-    params.delete("page");
-
-    replace(`${pathname}?${params.toString()}`);
-  };
+  const { searchParams, setParam } = useSearchParamsState();
 
   return {
     activeCategory: searchParams.get("category"),
-    setCategory,
+    setCategory: (id: string | null) => setParam("category", id),
   };
 }

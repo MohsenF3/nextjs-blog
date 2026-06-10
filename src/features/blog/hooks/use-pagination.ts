@@ -1,10 +1,9 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParamsState } from "@/shared/hooks";
 
 export function usePagination() {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
+  const { searchParams, pathname } = useSearchParamsState();
 
   const createPageURL = (page: number) => {
     const params = new URLSearchParams(searchParams);
