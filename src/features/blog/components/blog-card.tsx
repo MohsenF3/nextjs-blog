@@ -18,6 +18,7 @@ export default function BlogCard({
           src={image}
           alt={title}
           fill
+          sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover transition-transform duration-500"
         />
       </div>

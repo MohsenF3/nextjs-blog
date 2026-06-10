@@ -2,7 +2,7 @@
 
 import { usePagination } from "@/features/blog/hooks/use-pagination";
 import { generatePagination } from "@/features/blog/utils";
-import { useMediaQuery } from "@/shared/hooks/use-media-query";
+import { useMediaQuery } from "@/shared/hooks";
 import PaginationArrow from "./pagination-arrow";
 import PaginationNumber from "./pagination-number";
 

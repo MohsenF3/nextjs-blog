@@ -1,5 +1,6 @@
 import BlogList from "@/features/blog/components/blog-list";
 import BlogLoading from "@/features/blog/components/blog-loading";
+import CreatePost from "@/features/blog/components/create-post/create-post";
 import CategoryFilterSkeleton from "@/features/blog/components/filter/category/category-filter-loading";
 import CategoryList from "@/features/blog/components/filter/category/category-list";
 import SearchInput from "@/features/blog/components/filter/search/search-input";
@@ -30,6 +31,8 @@ export default async function BlogPage(props: { searchParams: SearchParams }) {
           <Suspense fallback={<CategoryFilterSkeleton />}>
             <CategoryList />
           </Suspense>
+
+          <CreatePost />
         </div>
 
         <div className="col-span-full md:col-span-3">

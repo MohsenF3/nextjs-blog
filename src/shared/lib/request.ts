@@ -1,10 +1,8 @@
-import { env } from "@/config";
-
 function buildApiUrl(
   path: string,
   params?: Record<string, string | number | undefined>,
 ) {
-  const url = new URL(path, env.API_URL);
+  const url = new URL(path, process.env.API_URL);
 
   if (params) {
     for (const [key, value] of Object.entries(params)) {
@@ -31,4 +29,39 @@ export async function apiGet<T>(
   }
 
   return response.json() as Promise<T>;
+}
+
+export class ApiError extends Error {
+  constructor(
+    public status: number,
+    public data: Record<string, string[]>,
+  ) {
+    super(`Request failed: ${status}`);
+  }
+}
+
+export async function apiPost<T>(
+  path: string,
+  body: unknown,
+  options?: RequestInit,
+): Promise<T> {
+  const response = await fetch(buildApiUrl(path), {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      ...((options?.headers as Record<string, string>) ?? {}),
+    },
+    body: JSON.stringify(body),
+    ...options,
+  });
+
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new ApiError(response.status, data);
+  }
+
+  // 204 or empty body — nothing to parse
+  const text = await response.text();
+  return (text ? JSON.parse(text) : null) as T;
 }
