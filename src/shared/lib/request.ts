@@ -18,11 +18,7 @@ export async function apiGet<T>(
   params?: Record<string, string | number | undefined>,
   options?: RequestInit,
 ): Promise<T> {
-  const response = await fetch(buildApiUrl(path, params), {
-    credentials: "include",
-    cache: "no-store",
-    ...options,
-  });
+  const response = await fetch(buildApiUrl(path, params), options);
 
   if (!response.ok) {
     throw new Error(`Request failed: ${response.status}`);
@@ -47,7 +43,6 @@ export async function apiPost<T>(
 ): Promise<T> {
   const response = await fetch(buildApiUrl(path), {
     method: "POST",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       ...((options?.headers as Record<string, string>) ?? {}),

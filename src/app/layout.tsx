@@ -1,3 +1,4 @@
+import { yekanFont } from "@/shared/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -12,7 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className={`h-full antialiased`}>
+    <html
+      lang="fa"
+      dir="rtl"
+      className={`h-full antialiased ${yekanFont.variable}`}
+    >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
