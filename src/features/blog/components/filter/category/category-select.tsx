@@ -24,10 +24,14 @@ export default function CategorySelect({
       dir="rtl"
     >
       <SelectTrigger className="w-full" dir="rtl">
-        <SelectValue placeholder="دسته بندی ها" />
+        {activeCategory ? (
+          <SelectValue />
+        ) : (
+          <span className="text-muted-foreground">دسته بندی ها</span>
+        )}
       </SelectTrigger>
       <SelectContent dir="rtl" position="popper">
-        <SelectItem value="all">دسته بندی ها</SelectItem>
+        <SelectItem value="all">همه دسته بندی ها</SelectItem>
 
         {categories.map((category) => (
           <SelectItem key={category.id} value={String(category.id)}>
