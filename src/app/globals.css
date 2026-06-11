@@ -11,11 +11,14 @@
   --foreground: #2a3648;
   --muted-foreground: #4f596b;
 
+  --card: #f9f9f9;
   --destructive: #8d0000;
   --warning: #bd9700;
   --success: #00813b;
 
   --border: #e5e5e5;
+
+  --accent: #e0e1e5;
 }
 
 @theme inline {
@@ -29,6 +32,8 @@
   --color-warning: var(--warning);
   --color-success: var(--success);
   --color-border: var(--border);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
 }
 
 @layer base {
@@ -47,5 +52,5 @@
 @utility container {
   @apply mx-auto;
 
-  @apply p-4 sm:px-8;
+  @apply p-3 sm:px-8;
 }

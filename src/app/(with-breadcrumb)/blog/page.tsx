@@ -22,7 +22,7 @@ export default async function BlogPage(props: { searchParams: SearchParams }) {
 
   return (
     <div className="">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-6">
         <div className="col-span-full md:col-span-1 space-y-8">
           <div className="hidden md:block">
             <SearchInput />
@@ -36,7 +36,7 @@ export default async function BlogPage(props: { searchParams: SearchParams }) {
         </div>
 
         <div className="col-span-full md:col-span-3">
-          <Suspense fallback={<BlogLoading />}>
+          <Suspense fallback={<BlogLoading query={query} />}>
             <BlogList key={JSON.stringify(query)} query={query} />
           </Suspense>
         </div>
