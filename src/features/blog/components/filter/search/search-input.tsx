@@ -9,7 +9,7 @@ export default function SearchInput() {
   const { activeSearch, setSearch } = useSearchFilter();
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2">
       <Label htmlFor="search">جستجو مجله</Label>
       <IconInput
         id="search"

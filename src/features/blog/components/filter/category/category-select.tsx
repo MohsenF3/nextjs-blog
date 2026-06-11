@@ -2,6 +2,13 @@
 
 import { useCategoryFilter } from "@/features/blog/hooks/use-category-filter";
 import { Category } from "@/features/blog/types";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/components/ui/select";
 
 export default function CategorySelect({
   categories,
@@ -11,17 +18,23 @@ export default function CategorySelect({
   const { activeCategory, setCategory } = useCategoryFilter();
 
   return (
-    <select
-      value={activeCategory ?? ""}
-      onChange={(e) => setCategory(e.target.value || null)}
-      className="w-full rounded-md border px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary"
+    <Select
+      value={activeCategory ?? "all"}
+      onValueChange={(value) => setCategory(value === "all" ? null : value)}
+      dir="rtl"
     >
-      <option value="">همه دسته بندی ها</option>
-      {categories.map((category) => (
-        <option key={category.id} value={String(category.id)}>
-          {category.title} ({category.blog_count})
-        </option>
-      ))}
-    </select>
+      <SelectTrigger className="w-full" dir="rtl">
+        <SelectValue placeholder="دسته بندی ها" />
+      </SelectTrigger>
+      <SelectContent dir="rtl" position="popper">
+        <SelectItem value="all">دسته بندی ها</SelectItem>
+
+        {categories.map((category) => (
+          <SelectItem key={category.id} value={String(category.id)}>
+            {category.title} ({category.blog_count})
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }

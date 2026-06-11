@@ -32,14 +32,14 @@ export default function FeaturedBlogCard({
         </div>
       </div>
 
-      <div className="relative w-1/2 rounded-lg sm:h-75 overflow-hidden mb-1">
+      <div className="relative w-1/2 rounded-lg h-28.5 sm:h-75 overflow-hidden mb-1">
         <Image
           src={image}
           alt={title}
           fill
           loading="eager"
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500"
+          className="object-cover"
         />
         <span className="hidden sm:block absolute right-3 top-4 bg-secondary rounded py-1 px-2 min-w-10 text-center text-sm text-background">
           {categoryTitle}

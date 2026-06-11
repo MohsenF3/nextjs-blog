@@ -4,6 +4,7 @@
   --background: #f4f4f4;
 
   --primary: #569ca3;
+  --primary-light: #457d82;
   --secondary: #01636c;
 
   --muted: #f1f1f1;
@@ -26,6 +27,7 @@
   --color-foreground: var(--foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
   --color-secondary: var(--secondary);
   --color-muted: var(--muted);
   --color-destructive: var(--destructive);

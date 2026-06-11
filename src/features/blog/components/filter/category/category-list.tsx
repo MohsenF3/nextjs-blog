@@ -13,8 +13,9 @@ export default async function CategoryList() {
   return (
     <>
       {/* desktop */}
-      <div className="hidden md:block border p-3 rounded-lg">
-        <h2 className="text-lg font-semibold mb-4">دسته بندی ها</h2>
+      <div className="hidden md:block border p-4 rounded-xl space-y-5">
+        <h2 className="text-lg text-primary-light">دسته بندی ها</h2>
+
         <div className="flex flex-col gap-2">
           {categories.map((category) => (
             <CategoryCheckbox key={category.id} {...category} />
@@ -23,7 +24,7 @@ export default async function CategoryList() {
       </div>
 
       {/* mobile */}
-      <div className="md:hidden">
+      <div className="block md:hidden">
         <CategorySelect categories={categories} />
       </div>
     </>

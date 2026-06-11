@@ -2,22 +2,26 @@
 
 import { useCategoryFilter } from "@/features/blog/hooks/use-category-filter";
 import { Category } from "@/features/blog/types";
+import { Checkbox } from "@/shared/components/ui/checkbox";
+import { Label } from "@/shared/components/ui/label";
 
 export default function CategoryCheckbox({ blog_count, title, id }: Category) {
   const { activeCategory, setCategory } = useCategoryFilter();
 
-  const isChecked = activeCategory === String(id);
+  const stringId = String(id);
+  const isChecked = activeCategory === stringId;
 
   return (
-    <label className="flex items-center gap-2 cursor-pointer">
-      <input
-        type="checkbox"
+    <div className="flex items-center gap-3">
+      <Checkbox
+        id={stringId}
         checked={isChecked}
-        onChange={() => setCategory(isChecked ? null : String(id))}
-        className="rounded"
+        onCheckedChange={(checked) => setCategory(checked ? stringId : null)}
       />
-      <span className="text-sm">{title}</span>
-      <span className="text-xs text-muted-foreground">({blog_count})</span>
-    </label>
+      <Label htmlFor={stringId} className="cursor-pointer text-base">
+        {title}
+        <span className="text-muted-foreground">({blog_count})</span>
+      </Label>
+    </div>
   );
 }
