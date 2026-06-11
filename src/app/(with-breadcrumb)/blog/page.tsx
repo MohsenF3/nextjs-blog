@@ -1,9 +1,6 @@
 import BlogList from "@/features/blog/components/blog-list";
 import BlogLoading from "@/features/blog/components/blog-loading";
-import CreatePost from "@/features/blog/components/create-post/create-post";
-import CategoryFilterSkeleton from "@/features/blog/components/filter/category/category-filter-loading";
-import CategoryList from "@/features/blog/components/filter/category/category-list";
-import SearchInput from "@/features/blog/components/filter/search/search-input";
+import BlogSidebar from "@/features/blog/components/blog-sidebar";
 import { blogSearchParamsSchema } from "@/features/blog/schema";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -23,17 +20,9 @@ export default async function BlogPage(props: { searchParams: SearchParams }) {
   return (
     <div className="">
       <div className="grid grid-cols-4 gap-6">
-        <div className="col-span-full md:col-span-1 space-y-8">
-          <div className="hidden md:block">
-            <SearchInput />
-          </div>
-
-          <Suspense fallback={<CategoryFilterSkeleton />}>
-            <CategoryList />
-          </Suspense>
-
-          <CreatePost />
-        </div>
+        <aside className="col-span-full md:col-span-1 space-y-6">
+          <BlogSidebar />
+        </aside>
 
         <div className="col-span-full md:col-span-3">
           <Suspense fallback={<BlogLoading query={query} />}>

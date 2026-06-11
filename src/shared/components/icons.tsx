@@ -129,4 +129,35 @@ function IconEye({ className, ...props }: React.ComponentProps<"svg">) {
   );
 }
 
-export { IconArrowRight, IconClock, IconHome, IconUser, IconEye };
+function IconSearch({ className, ...props }: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn("size-4", className)}
+      {...props}
+    >
+      <path
+        d="M12.916 12.9167L14.166 14.1667"
+        stroke="#4F596B"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14.5271 16.271C14.0457 15.7896 14.0457 15.0091 14.5271 14.5277C15.0084 14.0463 15.7889 14.0463 16.2703 14.5277L17.9716 16.229C18.453 16.7104 18.453 17.4909 17.9716 17.9722C17.4902 18.4537 16.7097 18.4537 16.2283 17.9722L14.5271 16.271Z"
+        stroke="#4F596B"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14.1667 8.33333C14.1667 5.11168 11.555 2.5 8.33333 2.5C5.11168 2.5 2.5 5.11168 2.5 8.33333C2.5 11.555 5.11168 14.1667 8.33333 14.1667C11.555 14.1667 14.1667 11.555 14.1667 8.33333Z"
+        stroke="#4F596B"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export { IconArrowRight, IconClock, IconEye, IconHome, IconSearch, IconUser };
