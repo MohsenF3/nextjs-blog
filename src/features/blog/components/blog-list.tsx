@@ -32,7 +32,7 @@ export default async function BlogList({ query }: { query: BlogSearchParams }) {
   // check if the query is filtered or not
   const isFiltered = isFilteredQuery(query);
   // if the query is filtered, the first post is the featured one
-  const featuredPost = !isFiltered ? data.results[16] : undefined;
+  const featuredPost = !isFiltered ? data.results[0] : undefined;
   // if the query is filtered, the posts are sliced from the second one
   // otherwise, the posts are sliced from the first one
   const posts = featuredPost ? data.results.slice(1) : data.results;

@@ -1,3 +1,4 @@
+import { Toaster } from "@/shared/components/ui/sonner";
 import { yekanFont } from "@/shared/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -18,7 +19,10 @@ export default function RootLayout({
       dir="rtl"
       className={`h-full antialiased ${yekanFont.variable}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Toaster dir="rtl" richColors position="top-right" />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
