@@ -26,7 +26,7 @@ export default function FeaturedBlogCard({
 
         <div className="flex items-center gap-[5.96px] sm:gap-5">
           <IconUser className="size-[23.8] sm:size-12" />
-          <span className="text-[6.95px] sm:text-sm text-muted-foreground">
+          <span className="text-xs sm:text-sm text-muted-foreground">
             تیم محتوای ما
           </span>
         </div>

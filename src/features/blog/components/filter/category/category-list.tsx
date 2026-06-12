@@ -14,7 +14,7 @@ export default async function CategoryList() {
   return (
     <>
       {/* desktop */}
-      <div className="hidden md:block border p-4 rounded-xl space-y-5">
+      <div className="hidden lg:block border p-4 rounded-xl space-y-5">
         <h2 className="text-lg text-primary-light">دسته بندی ها</h2>
 
         <div className="flex flex-col gap-2">
@@ -25,7 +25,7 @@ export default async function CategoryList() {
       </div>
 
       {/* mobile */}
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         <CategorySelect categories={categories} />
       </div>
     </>

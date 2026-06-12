@@ -29,21 +29,31 @@ function FeaturedCardSkeleton() {
 
 function BlogCardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-      <Skeleton className="aspect-video w-full rounded-none" />
+    <div className="relative w-full h-60.75 md:h-81.5">
+      <div className="absolute inset-0 rounded-xl border border-border bg-card" />
 
-      <div className="flex flex-col p-5">
-        <Skeleton className="mb-3 h-6 w-24 rounded-full" />
+      <div className="relative z-10 h-full w-full p-2 md:p-3 flex flex-col justify-between gap-2.5">
+        <div className="relative w-full h-25 md:h-45 rounded-lg overflow-hidden">
+          <Skeleton className="h-full w-full rounded-lg" />
 
-        <Skeleton className="mb-2 h-6 w-full" />
-        <Skeleton className="mb-4 h-6 w-3/4" />
+          <Skeleton className="absolute top-3 left-3.25 w-20 h-5 rounded-sm" />
+        </div>
 
-        <Skeleton className="mb-2 h-4 w-full" />
-        <Skeleton className="mb-2 h-4 w-full" />
-        <Skeleton className="h-4 w-2/3" />
+        <div className="space-y-2">
+          <Skeleton className="h-4 md:h-5 w-full" />
+          <Skeleton className="h-4 md:h-5 w-4/5" />
+        </div>
 
-        <div className="mt-5 border-t border-gray-100 pt-4">
-          <Skeleton className="h-4 w-28" />
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-4 w-4 rounded-full" />
+            <Skeleton className="h-3 md:h-4 w-24" />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-4 w-4 rounded-full" />
+            <Skeleton className="h-3 md:h-4 w-32" />
+          </div>
         </div>
       </div>
     </div>

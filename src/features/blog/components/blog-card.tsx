@@ -1,46 +1,66 @@
+import { IconClock, IconEye, IconUser } from "@/shared/components/icons";
 import { toJalali } from "@/shared/lib/formatDate";
 import Image from "next/image";
+import Link from "next/link";
 import { Post } from "../types";
+import BlogCardMask from "./blog-card-mask";
 
 export default function BlogCard({
   image,
   title,
-  content,
   created_datetime,
   category: { title: categoryTitle },
 }: Post) {
   const formattedDate = toJalali(created_datetime);
 
   return (
-    <article className="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300  hover:shadow-lg">
-      <div className="relative aspect-video overflow-hidden">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          loading="eager"
-          sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500"
-        />
-      </div>
+    <article className="relative w-full h-60.75 md:h-81.5 overflow-visible">
+      <div className="relative w-full h-60.75 md:h-81.5 p-2 md:p-3 ">
+        <BlogCardMask />
 
-      <div className="flex flex-col p-5">
-        <span className="mb-3 w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
-          {categoryTitle}
-        </span>
+        <div className="relative z-10 flex flex-col justify-between w-full h-full gap-2.5 overflow-hidden">
+          <div className="relative w-full h-25 md:h-45 rounded-lg overflow-hidden">
+            <Image
+              src={image}
+              alt={title}
+              fill
+              loading="eager"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
 
-        <h2 className="mb-3 line-clamp-2 text-lg font-semibold leading-7 text-gray-900">
-          {title}
-        </h2>
+            <span className="absolute top-3 left-3.25 w-19 md:w-20.25 px-2 py-1 bg-secondary rounded-sm text-center text-card text-[11px] md:text-xs">
+              {categoryTitle}
+            </span>
+          </div>
 
-        <p className="line-clamp-3 text-sm leading-6 text-gray-600">
-          {content}
-        </p>
+          <h2 className="text-sm md:text-lg line-clamp-3 md:line-clamp-2">
+            {title}
+          </h2>
 
-        <div className="mt-5 border-t border-gray-100 pt-4">
-          {formattedDate}
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-1">
+              <IconClock />
+              <span className="text-xs md:text-sm text-muted-foreground">
+                {formattedDate}
+              </span>
+            </div>
+            <div className="flex items-center max-sm:max-w-[40%] overflow-hidden gap-1">
+              <IconUser />
+              <span className="text-xs md:text-sm text-muted-foreground">
+                تیم محتوای ما
+              </span>
+            </div>
+          </div>
         </div>
       </div>
+
+      <Link
+        href="#"
+        className="absolute bottom-0.5 flex items-center justify-center left-0 size-9 md:size-11 rounded-lg border border-border bg-card z-20"
+      >
+        <IconEye className="size-4 md:size-5" />
+      </Link>
     </article>
   );
 }

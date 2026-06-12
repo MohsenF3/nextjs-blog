@@ -1,10 +1,9 @@
 "use client";
 
 import { cn } from "@/shared/lib/utils";
-import { ChevronDownIcon } from "lucide-react";
 import { Select as SelectPrimitive } from "radix-ui";
 import * as React from "react";
-import { IconCheck } from "../icons";
+import { IconCheck, IconChevronDown } from "../icons";
 
 function Select({
   ...props
@@ -38,7 +37,7 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDownIcon className="pointer-events-none size-4 text-muted-foreground" />
+        <IconChevronDown className="pointer-events-none size-4 text-muted-foreground" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );

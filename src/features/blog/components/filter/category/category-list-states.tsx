@@ -1,14 +1,14 @@
+import { IconCircleAlert, IconInbox } from "@/shared/components/icons";
 import {
   Alert,
   AlertDescription,
   AlertTitle,
 } from "@/shared/components/ui/alert";
-import { AlertCircle, Inbox } from "lucide-react";
 
 export function CategoryListError() {
   return (
     <Alert variant="destructive">
-      <AlertCircle />
+      <IconCircleAlert />
       <AlertTitle>مشکلی پیش آمد</AlertTitle>
       <AlertDescription>لطفاً بعداً دوباره امتحان کنید.</AlertDescription>
     </Alert>
@@ -18,7 +18,7 @@ export function CategoryListError() {
 export function CategoryListEmpty() {
   return (
     <Alert>
-      <Inbox />
+      <IconInbox />
       <AlertTitle>دسته‌بندی‌ای یافت نشد</AlertTitle>
       <AlertDescription>در حال حاضر دسته‌بندی‌ای موجود نیست.</AlertDescription>
     </Alert>

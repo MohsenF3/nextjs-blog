@@ -7,7 +7,7 @@ import SearchInput from "./filter/search/search-input";
 export default function BlogSidebar() {
   return (
     <>
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <SearchInput />
       </div>
 
