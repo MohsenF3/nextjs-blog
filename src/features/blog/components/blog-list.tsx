@@ -4,6 +4,7 @@ import { getPosts } from "../api";
 import { BlogSearchParams } from "../schema";
 import { isFilteredQuery } from "../utils";
 import BlogCard from "./blog-card";
+import { BlogListEmpty, BlogListError } from "./blog-list-states";
 import FeaturedBlogCard from "./featured-blog-card";
 
 const PAGE_SIZE = 24;
@@ -11,23 +12,9 @@ const PAGE_SIZE = 24;
 export default async function BlogList({ query }: { query: BlogSearchParams }) {
   const [data, error] = await tryCatch(getPosts(query));
 
-  if (error) {
-    return (
-      <div className="py-10 text-center text-sm text-destructive">
-        Something went wrong. Please try again later.
-      </div>
-    );
-  }
+  if (error) return <BlogListError />;
 
-  if (!data.results.length) {
-    return (
-      <div className="py-10 text-center text-sm text-muted-foreground">
-        No posts found.
-      </div>
-    );
-  }
-
-  const totalPages = Math.ceil(data.count / PAGE_SIZE);
+  if (!data.results.length) return <BlogListEmpty />;
 
   // check if the query is filtered or not
   const isFiltered = isFilteredQuery(query);
@@ -36,6 +23,8 @@ export default async function BlogList({ query }: { query: BlogSearchParams }) {
   // if the query is filtered, the posts are sliced from the second one
   // otherwise, the posts are sliced from the first one
   const posts = featuredPost ? data.results.slice(1) : data.results;
+
+  const totalPages = Math.ceil(data.count / PAGE_SIZE);
 
   return (
     <div className="space-y-4 sm:space-y-6">

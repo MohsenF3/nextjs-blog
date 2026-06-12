@@ -1,14 +1,15 @@
 import { getCategories } from "@/features/blog/api";
 import { tryCatch } from "@/shared/lib/try-catch";
 import CategoryCheckbox from "./category-checkbox";
+import { CategoryListEmpty, CategoryListError } from "./category-list-states";
 import CategorySelect from "./category-select";
 
 export default async function CategoryList() {
   const [categories, error] = await tryCatch(getCategories());
 
-  if (error) return <div>Something went wrong</div>;
+  if (error) return <CategoryListError />;
 
-  if (!categories.length) return <div>No categories found</div>;
+  if (!categories.length) return <CategoryListEmpty />;
 
   return (
     <>
