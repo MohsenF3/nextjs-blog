@@ -2,13 +2,10 @@ import BlogList from "@/features/blog/components/blog-list";
 import BlogLoading from "@/features/blog/components/blog-loading";
 import BlogSidebar from "@/features/blog/components/blog-sidebar";
 import { blogSearchParamsSchema } from "@/features/blog/schema";
-import { Metadata } from "next";
+import { blogMetadata } from "@/features/blog/seo";
 import { Suspense } from "react";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Blog page",
-};
+export const metadata = blogMetadata;
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 

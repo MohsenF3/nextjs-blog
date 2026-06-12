@@ -22,7 +22,7 @@ export async function createPostAction(
     };
   }
 
-  revalidatePath(routes.blog.list);
+  revalidatePath(routes.blog);
 
   return { success: true, data: undefined };
 }

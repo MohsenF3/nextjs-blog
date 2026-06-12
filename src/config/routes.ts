@@ -1,5 +1,4 @@
 export const routes = {
-  blog: {
-    list: "/blog",
-  },
+  home: "/",
+  blog: "/blog",
 } as const;
