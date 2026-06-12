@@ -52,6 +52,25 @@ function IconArrowRight({ className, ...props }: React.ComponentProps<"svg">) {
     </svg>
   );
 }
+function IconArrowLeft({ className, ...props }: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      stroke="currentColor"
+      strokeWidth="2"
+      className={cn("size-4", className)}
+      {...props}
+    >
+      <path
+        d="M12.5 5C12.5 5 7.50001 8.68242 7.5 10C7.49999 11.3177 12.5 15 12.5 15"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 function IconClock({ className, ...props }: React.ComponentProps<"svg">) {
   return (
@@ -210,6 +229,7 @@ function IconUserSquare({ className, ...props }: React.ComponentProps<"svg">) {
 
 export {
   IconArrowRight,
+  IconArrowLeft,
   IconClock,
   IconEye,
   IconHome,

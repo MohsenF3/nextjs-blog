@@ -1,7 +1,6 @@
-import Link from "next/link";
+import { buttonVariants } from "@/shared/components/ui/button";
 import { cn } from "@/shared/lib/utils";
-
-type Position = "first" | "last" | "middle" | "single" | undefined;
+import Link from "next/link";
 
 export default function PaginationNumber({
   page,
@@ -12,20 +11,19 @@ export default function PaginationNumber({
   page: number | string;
   href: string;
   isActive: boolean;
-  position?: Position;
+  position?: "first" | "last" | "middle" | "single" | undefined;
 }) {
+  const isDots = position === "middle";
+
   const className = cn(
-    "min-h-9.5 min-w-9.5 flex justify-center items-center border border-green-500 py-2 px-3 text-sm text-foreground focus:outline-none rounded-md",
-    {
-      "rounded-lg": position === "single",
-      "bg-green-500 text-white pointer-events-none": isActive,
-      "hover:bg-muted-hover": !isActive && position !== "middle",
-      "text-muted-foreground pointer-events-none border-transparent":
-        position === "middle",
-    },
+    buttonVariants({
+      variant: isActive ? "light" : "outline",
+      size: "icon-lg",
+    }),
+    isDots && "pointer-events-none border-transparent text-muted-foreground",
   );
 
-  if (isActive || position === "middle") {
+  if (isActive || isDots) {
     return <div className={className}>{page}</div>;
   }
 

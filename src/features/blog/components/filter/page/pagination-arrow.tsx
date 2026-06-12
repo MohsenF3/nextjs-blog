@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { buttonVariants } from "@/shared/components/ui/button";
 import { cn } from "@/shared/lib/utils";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { IconArrowLeft, IconArrowRight } from "@/shared/components/icons";
+import Link from "next/link";
 
 export default function PaginationArrow({
   href,
@@ -11,21 +12,20 @@ export default function PaginationArrow({
   direction: "left" | "right";
   isDisabled?: boolean;
 }) {
-  const className = cn(
-    "min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center text-sm rounded-md border border-transparent text-foreground",
-    {
-      "opacity-50 pointer-events-none bg-gray-300": isDisabled,
-      "hover:bg-muted-hover focus:bg-muted-focus bg-green-500 text-white":
-        !isDisabled,
-    },
-  );
-
   const icon =
     direction === "left" ? (
-      <ChevronLeft className="size-3.5 shrink-0" />
+      <IconArrowLeft className="size-5 shrink-0" />
     ) : (
-      <ChevronRight className="size-3.5 shrink-0" />
+      <IconArrowRight className="size-5 shrink-0" />
     );
+
+  const className = cn(
+    buttonVariants({
+      variant: isDisabled ? "ghost" : "secondary",
+      size: "icon-lg",
+    }),
+    isDisabled && "pointer-events-none opacity-50",
+  );
 
   if (isDisabled) {
     return (

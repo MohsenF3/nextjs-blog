@@ -1,27 +1,29 @@
 "use client";
 
 import { usePagination } from "@/features/blog/hooks/use-pagination";
-import { generatePagination } from "@/features/blog/utils";
-import { useMediaQuery } from "@/shared/hooks";
+import {
+  DOTS,
+  generatePagination,
+  resolvePosition,
+} from "@/features/blog/utils";
+import { useMediaQuery } from "@/shared/hooks/use-media-query";
 import PaginationArrow from "./pagination-arrow";
 import PaginationNumber from "./pagination-number";
 
-const DOTS = "...";
+interface PaginationProps {
+  totalPages: number;
+}
 
-export default function Pagination({ totalPages }: { totalPages: number }) {
+export default function Pagination({ totalPages }: PaginationProps) {
   const { currentPage, createPageURL } = usePagination();
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
-  // get an array of pages that will be displayed in the pagination
-  let allPages = generatePagination(currentPage, totalPages);
+  const isMobile = useMediaQuery("(max-width: 640px)");
 
-  if (isMobile) {
-    allPages = allPages.slice(currentPage - 1, currentPage + 1).concat(DOTS);
-  }
+  const pages = generatePagination(currentPage, totalPages, isMobile);
 
   return (
     <nav
-      className="flex items-center flex-row-reverse gap-1"
+      className="flex items-center flex-row-reverse flex-wrap gap-1"
       dir="rtl"
       aria-label="صفحه‌بندی"
     >
@@ -31,19 +33,17 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         isDisabled={currentPage <= 1}
       />
 
-      {allPages.map((page, index) => {
-        let position: "first" | "last" | "single" | "middle" | undefined;
-        if (index === 0) position = "first";
-        if (index === allPages.length - 1) position = "last";
-        if (allPages.length === 1) position = "single";
-        if (page === "...") position = "middle";
+      {pages.map((page, index) => {
+        if (page === DOTS) {
+          return <PaginationEllipsis key={`dots-${index}`} />;
+        }
 
         return (
           <PaginationNumber
-            key={`${page}-${index}`}
+            key={page}
             page={page}
-            href={createPageURL(typeof page === "number" ? page : currentPage)}
-            position={position}
+            href={createPageURL(page)}
+            position={resolvePosition(index, pages)}
             isActive={currentPage === page}
           />
         );
@@ -55,5 +55,16 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         isDisabled={currentPage >= totalPages}
       />
     </nav>
+  );
+}
+
+function PaginationEllipsis() {
+  return (
+    <span
+      className="flex h-9 w-9 items-center justify-center text-sm text-muted-foreground select-none"
+      aria-hidden="true"
+    >
+      &hellip;
+    </span>
   );
 }
